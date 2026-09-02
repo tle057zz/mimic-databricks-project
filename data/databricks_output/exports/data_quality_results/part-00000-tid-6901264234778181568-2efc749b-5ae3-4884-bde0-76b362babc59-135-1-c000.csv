@@ -1,0 +1,8 @@
+actual_value,check_name,expected_value,status,checked_at
+0,Null patient IDs,0,PASS,2026-08-25T04:25:55.960Z
+0,Duplicate patient IDs,0,PASS,2026-08-25T04:25:55.960Z
+0,Null admission IDs,0,PASS,2026-08-25T04:25:55.960Z
+0,Duplicate admission IDs,0,PASS,2026-08-25T04:25:55.960Z
+0,Discharge before admission,0,PASS,2026-08-25T04:25:55.960Z
+0,Admissions without patients,0,PASS,2026-08-25T04:25:55.960Z
+0,Diagnoses without admissions,0,PASS,2026-08-25T04:25:55.960Z
