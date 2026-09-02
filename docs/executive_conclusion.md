@@ -2,6 +2,7 @@
 
 **Dataset:** MIMIC-IV Clinical Database Demo v2.2 (100 patients · 275 admissions)  
 **Analysis sources:** Five Gold-layer reporting views + Databricks `07_business_analysis` notebook  
+**HTML report:** [report/executive_conclusion.html](../report/executive_conclusion.html)  
 **Date:** September 2026
 
 ---

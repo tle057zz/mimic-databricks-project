@@ -2,7 +2,7 @@
 
 Medallion-architecture pipeline (Bronze → Silver → Gold) over scoped tables from the [MIMIC-IV Clinical Database Demo v2.2](https://physionet.org/content/mimic-iv-demo/2.2/).
 
-**[Reports home](report/index.html)** · **[Project report](report/report.html)** · **[Dashboard 1](report/dashboard_01_hospital_overview.html)** · **[Dashboard 2](report/dashboard_02_diagnosis_analysis.html)** · **[Dashboard 3](report/dashboard_03_medication_analysis.html)** · **[Dashboard 4](report/dashboard_04_hospital_operations.html)** · **[Power BI](https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9)**
+**[Reports home](report/index.html)** · **[Project report](report/report.html)** · **[Executive conclusion](report/executive_conclusion.html)** · **[Dashboard 1](report/dashboard_01_hospital_overview.html)** · **[Dashboard 2](report/dashboard_02_diagnosis_analysis.html)** · **[Dashboard 3](report/dashboard_03_medication_analysis.html)** · **[Dashboard 4](report/dashboard_04_hospital_operations.html)** · **[Power BI](https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9)**
 
 ## Technologies & Concepts
 
@@ -165,6 +165,8 @@ The published dashboard built from the Gold layer reporting views is available h
 Power BI connects to the `workspace.mimic` reporting views (`vw_admission_overview`, `vw_diagnosis_analysis`, etc.) created by `06_reporting_views`. Source files and connection notes are in the `powerbi/` folder.
 
 **Dashboard analysis:** [Dashboard 1](report/dashboard_01_hospital_overview.html) · [Dashboard 2](report/dashboard_02_diagnosis_analysis.html) · [Dashboard 3](report/dashboard_03_medication_analysis.html) · [Dashboard 4](report/dashboard_04_hospital_operations.html) — verified against CSV exports in `data/databricks_output/exports/`.
+
+**Executive conclusion:** [report/executive_conclusion.html](report/executive_conclusion.html) — cross-domain synthesis of all five Gold views.
 
 ### Dashboard pages
 
