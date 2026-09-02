@@ -2,6 +2,8 @@
 
 Medallion-architecture pipeline (Bronze → Silver → Gold) over scoped tables from the [MIMIC-IV Clinical Database Demo v2.2](https://physionet.org/content/mimic-iv-demo/2.2/).
 
+**[Reports home](report/index.html)** · **[Project report](report/report.html)** · **[Dashboard 1](report/dashboard_01_hospital_overview.html)** · **[Dashboard 2](report/dashboard_02_diagnosis_analysis.html)** · **[Dashboard 3](report/dashboard_03_medication_analysis.html)** · **[Dashboard 4](report/dashboard_04_hospital_operations.html)** · **[Power BI](https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9)**
+
 ## Technologies & Concepts
 
 The project demonstrates practical use of:
@@ -37,41 +39,23 @@ The project demonstrates practical use of:
 
 The demo is an openly available subset of [MIMIC-IV](https://mimic.mit.edu/) — deidentified electronic health records from Beth Israel Deaconess Medical Center. It contains **100 patients** with the same schema as the full database, but excludes free-text clinical notes. Tables without patient-level data (prefixed `d_`) are included in full.
 
-### Download Layout
+The full PhysioNet download includes `hosp/` (hospital tables) and `icu/` (ICU tables). **This project uses 7 tables from `hosp/` only** — ICU data is out of scope.
 
-The dataset was downloaded from PhysioNet into the parent workspace:
+### Raw Data (`data/raw/`)
 
-```
-mimic-iv-clinical-database-demo-2.2/
-├── hosp/                   # Hospital-level tables (admissions, labs, meds, etc.)
-├── icu/                    # ICU-level tables (chartevents, inputevents, etc.)
-├── demo_subject_id.csv     # List of 100 subject_id in the demo subset
-├── README.txt
-├── LICENSE.txt
-└── mimic-databricks-project/
-    └── data/raw/           # Project landing zone (see below)
-```
+The seven scoped source files are stored in `data/raw/` and committed to this repository. They were extracted from the `hosp/` folder of the [PhysioNet download](https://physionet.org/content/mimic-iv-demo/2.2/).
 
-This project uses **7 tables from `hosp/`** only. The `icu/` folder is available in the download but is out of scope for the current pipeline.
+| File | Rows | Size | Description |
+|------|------|------|-------------|
+| `patients.csv` | 100 | 3.5 KB | Patient demographics |
+| `admissions.csv` | 275 | 46 KB | Hospital admissions |
+| `transfers.csv` | 1,190 | 100 KB | Ward/ICU transfers |
+| `diagnoses_icd.csv` | 4,506 | 126 KB | ICD diagnoses |
+| `procedures_icd.csv` | 722 | 28 KB | ICD procedures |
+| `prescriptions.csv` | 18,087 | 3.0 MB | Medications |
+| `d_icd_diagnoses.csv` | 109,775 | 8.4 MB | ICD diagnosis lookup (reference) |
 
-### Project Raw Data (`data/raw/`)
-
-Scoped source files are landed in `data/raw/` for bronze ingestion. Each table is available as:
-
-- **`.csv.gz`** — symlinks to the original files in `../../hosp/` (as downloaded from PhysioNet)
-- **`.csv`** — uncompressed exports for local inspection and tools that don't read gzip
-
-| File | Source | Rows | Size | Description |
-|------|--------|------|------|-------------|
-| `patients.csv` | `hosp/patients.csv.gz` | 100 | 3.5 KB | Patient demographics |
-| `admissions.csv` | `hosp/admissions.csv.gz` | 275 | 46 KB | Hospital admissions |
-| `transfers.csv` | `hosp/transfers.csv.gz` | 1,190 | 100 KB | Ward/ICU transfers |
-| `diagnoses_icd.csv` | `hosp/diagnoses_icd.csv.gz` | 4,506 | 126 KB | ICD diagnoses |
-| `procedures_icd.csv` | `hosp/procedures_icd.csv.gz` | 722 | 28 KB | ICD procedures |
-| `prescriptions.csv` | `hosp/prescriptions.csv.gz` | 18,087 | 3.0 MB | Medications |
-| `d_icd_diagnoses.csv` | `hosp/d_icd_diagnoses.csv.gz` | 109,775 | 8.4 MB | ICD diagnosis lookup (reference) |
-
-Row counts exclude the header line.
+Row counts exclude the header line. On Databricks, these files are uploaded to a Unity Catalog Volume (`raw_data`) for bronze ingestion.
 
 ## Source Tables (Bronze)
 
@@ -85,11 +69,11 @@ Row counts exclude the header line.
 | `prescriptions` | Medications | — | `subject_id`, `hadm_id` |
 | `d_icd_diagnoses` | ICD lookup | `icd_code` | — |
 
-## Project Structure
+## Repository Structure
 
 ```
-mimic-databricks-project/
-├── data/raw/                 # Scoped CSV / CSV.GZ from hosp/
+.
+├── data/raw/                 # Scoped CSV source files (7 tables)
 ├── notebooks/
 │   ├── databricks_notebooks/ # Deployed notebooks (HTML exports from Databricks)
 │   │   ├── 01_bronze_ingestion.html
@@ -105,7 +89,12 @@ mimic-databricks-project/
 │   ├── 02_silver_patients.py … 11_analytics.py
 ├── sql/                      # DDL / standalone SQL
 ├── powerbi/                  # Power BI reports / connections
+│   └── mimic_powerbi_dax_measures.md
 ├── docs/                     # Project documentation
+├── report/                   # HTML reports (start at report/index.html)
+│   ├── index.html
+│   ├── report.html
+│   └── dashboard_01_hospital_overview.html
 └── README.md
 ```
 
@@ -171,34 +160,173 @@ The job has been run manually with all tasks succeeding. Typical end-to-end dura
 
 The published dashboard built from the Gold layer reporting views is available here:
 
-**[MIMIC Analytics Dashboard](https://app.powerbi.com/view?r=eyJrIjoiOWFjMmJiNjktMDY1OC00OGFjLTg0ODgtNTkwYzBiYmEwYjc2IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9)**
+**[MIMIC Analytics Dashboard](https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9)**
 
 Power BI connects to the `workspace.mimic` reporting views (`vw_admission_overview`, `vw_diagnosis_analysis`, etc.) created by `06_reporting_views`. Source files and connection notes are in the `powerbi/` folder.
 
-## Quick Start (local / Databricks)
+**Dashboard analysis:** [Dashboard 1](report/dashboard_01_hospital_overview.html) · [Dashboard 2](report/dashboard_02_diagnosis_analysis.html) · [Dashboard 3](report/dashboard_03_medication_analysis.html) · [Dashboard 4](report/dashboard_04_hospital_operations.html) — verified against CSV exports in `data/databricks_output/exports/`.
 
-If `data/raw/` is not already populated, symlink the scoped tables from the downloaded `hosp/` folder:
+### Dashboard pages
 
-```bash
-cd mimic-databricks-project
-ln -sf ../../hosp/patients.csv.gz data/raw/
-ln -sf ../../hosp/admissions.csv.gz data/raw/
-ln -sf ../../hosp/transfers.csv.gz data/raw/
-ln -sf ../../hosp/diagnoses_icd.csv.gz data/raw/
-ln -sf ../../hosp/procedures_icd.csv.gz data/raw/
-ln -sf ../../hosp/prescriptions.csv.gz data/raw/
-ln -sf ../../hosp/d_icd_diagnoses.csv.gz data/raw/
+| # | Page | Data View | Report |
+|---|------|-----------|--------|
+| 1 | Hospital Overview | `vw_admission_overview` | [report/dashboard_01_hospital_overview.html](report/dashboard_01_hospital_overview.html) |
+| 2 | Diagnosis Analysis | `vw_diagnosis_analysis` | [report/dashboard_02_diagnosis_analysis.html](report/dashboard_02_diagnosis_analysis.html) |
+| 3 | Medication Analysis | `vw_prescription_analysis` | [report/dashboard_03_medication_analysis.html](report/dashboard_03_medication_analysis.html) |
+| 4 | Hospital Operations | `vw_transfer_analysis` + `vw_procedure_analysis` | [report/dashboard_04_hospital_operations.html](report/dashboard_04_hospital_operations.html) |
+
+## DAX Measures
+
+The dashboard uses **18 DAX measures** across four report pages. Canonical definitions are in [`powerbi/mimic_powerbi_dax_measures.md`](powerbi/mimic_powerbi_dax_measures.md).
+
+### 1. Hospital Overview
+
+```dax
+Total Patients =
+DISTINCTCOUNT(vw_admission_overview[patient_id])
 ```
 
-To create uncompressed CSV copies (optional):
+```dax
+Total Admissions =
+DISTINCTCOUNT(vw_admission_overview[admission_id])
+```
+
+```dax
+Average LOS =
+AVERAGE(vw_admission_overview[length_of_stay_days])
+```
+
+```dax
+In-Hospital Deaths =
+CALCULATE(
+    DISTINCTCOUNT(vw_admission_overview[admission_id]),
+    vw_admission_overview[died_in_hospital] = TRUE()
+)
+```
+
+```dax
+30-Day Readmissions =
+CALCULATE(
+    DISTINCTCOUNT(vw_admission_overview[admission_id]),
+    vw_admission_overview[is_30_day_readmission] = TRUE()
+)
+```
+
+```dax
+Readmission Rate =
+DIVIDE(
+    [30-Day Readmissions],
+    [Total Admissions],
+    0
+)
+```
+
+> Format `Readmission Rate` as a percentage.
+
+### 2. Diagnosis Analysis
+
+```dax
+Diagnosis Records =
+COUNTROWS(vw_diagnosis_analysis)
+```
+
+```dax
+Diagnosed Patients =
+DISTINCTCOUNT(vw_diagnosis_analysis[patient_id])
+```
+
+```dax
+Primary Diagnoses =
+CALCULATE(
+    COUNTROWS(vw_diagnosis_analysis),
+    vw_diagnosis_analysis[is_primary_diagnosis] = TRUE()
+)
+```
+
+### 3. Medication Analysis
+
+```dax
+Total Prescriptions =
+COUNTROWS(vw_prescription_analysis)
+```
+
+```dax
+Patients Receiving Medication =
+DISTINCTCOUNT(vw_prescription_analysis[patient_id])
+```
+
+```dax
+Unique Drugs =
+DISTINCTCOUNT(vw_prescription_analysis[drug_name])
+```
+
+```dax
+Avg Prescription Duration =
+AVERAGE(
+    vw_prescription_analysis[prescription_duration_days]
+)
+```
+
+### 4. Hospital Operations
+
+```dax
+Total Transfers =
+COUNTROWS(vw_transfer_analysis)
+```
+
+```dax
+Transferred Patients =
+DISTINCTCOUNT(vw_transfer_analysis[patient_id])
+```
+
+```dax
+Avg Transfer Duration =
+AVERAGE(vw_transfer_analysis[transfer_duration_hours])
+```
+
+```dax
+Total Procedures =
+COUNTROWS(vw_procedure_analysis)
+```
+
+```dax
+Procedure Patients =
+DISTINCTCOUNT(vw_procedure_analysis[patient_id])
+```
+
+## Quick Start
+
+### Clone and explore
 
 ```bash
+git clone <your-repo-url>
+cd mimic-databricks-project
+open report/index.html      # reports hub — navigate to all HTML pages
+```
+
+Source CSV files are already in `data/raw/`. No additional download is required to inspect the data locally.
+
+### Databricks setup
+
+1. Upload the seven CSV files from `data/raw/` to a Unity Catalog Volume at `workspace.mimic.raw_data`.
+2. Import or sync the notebooks from `notebooks/databricks_notebooks/`.
+3. Create the **MIMIC Daily ETL Pipeline** job with tasks `01` → `06` in sequence.
+4. Run the job, then connect Power BI to the SQL Warehouse querying `workspace.mimic` views.
+
+### Re-downloading source data from PhysioNet
+
+If you need to refresh `data/raw/` from the original download:
+
+```bash
+# Download the full demo dataset
+wget -r -N -c -np https://physionet.org/files/mimic-iv-demo/2.2/
+
+# Copy the 7 scoped hosp/ tables into data/raw/
 for t in patients admissions transfers diagnoses_icd procedures_icd prescriptions d_icd_diagnoses; do
-  gzip -dc "../../hosp/${t}.csv.gz" > "data/raw/${t}.csv"
+  cp mimic-iv-demo/2.2/hosp/${t}.csv.gz data/raw/
+  gzip -dc "data/raw/${t}.csv.gz" > "data/raw/${t}.csv"
 done
 ```
-
-Then run notebooks in order on Databricks (or adapt paths for local Spark).
 
 ## Citation
 

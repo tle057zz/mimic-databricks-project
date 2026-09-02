@@ -234,6 +234,58 @@
       border-radius: 4px;
     }
 
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 0.75rem 0 1.25rem;
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: #a8c7fa;
+    }
+
+    .measure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .measure-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    .measure-card h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+      color: var(--gold);
+    }
+
+    .measure-card ul {
+      list-style: none;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .measure-card li {
+      padding: 0.2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .measure-card li:last-child { border-bottom: none; }
+
+    .measure-card li strong { color: var(--text); font-weight: 500; }
+
     /* Tech grid */
     .tech-grid {
       display: grid;
@@ -313,6 +365,51 @@
 
     footer a { color: var(--muted); }
 
+    /* Site navigation */
+    .site-nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-nav .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .site-nav .brand {
+      font-weight: 700;
+      color: var(--text);
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .site-nav a {
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      font-size: 0.84rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+    .site-nav a:hover {
+      color: var(--text);
+      background: var(--surface-2);
+      text-decoration: none;
+    }
+    .site-nav a.active {
+      color: var(--accent);
+      background: var(--surface-2);
+      font-weight: 600;
+    }
+    .site-nav .disabled {
+      color: #556;
+      font-size: 0.84rem;
+      padding: 0.35rem 0.7rem;
+    }
+
     @media (max-width: 600px) {
       .pipeline { justify-content: center; }
       .pipeline-arrow { display: none; }
@@ -320,6 +417,19 @@
   </style>
 </head>
 <body>
+
+<nav class="site-nav">
+  <div class="container">
+    <a class="brand" href="index.html">MIMIC Analytics</a>
+    <a href="index.html">Home</a>
+    <a href="report.html" class="active">Project Report</a>
+    <a href="dashboard_01_hospital_overview.html">Dashboard 1</a>
+    <a href="dashboard_02_diagnosis_analysis.html">Dashboard 2</a>
+    <a href="dashboard_03_medication_analysis.html">Dashboard 3</a>
+    <a href="dashboard_04_hospital_operations.html">Dashboard 4</a>
+    <a href="https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">Power BI ↗</a>
+  </div>
+</nav>
 
 <header>
   <div class="container">
@@ -331,8 +441,14 @@
       to an interactive Power BI dashboard.
     </p>
     <div class="cta-group">
-      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiOWFjMmJiNjktMDY1OC00OGFjLTg0ODgtNTkwYzBiYmEwYjc2IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
         &#9654;&nbsp; Open Power BI Dashboard
+      </a>
+      <a class="btn btn-secondary" href="dashboard_01_hospital_overview.html">
+        Dashboard 1 Report
+      </a>
+      <a class="btn btn-secondary" href="index.html">
+        All Reports
       </a>
       <a class="btn btn-secondary" href="https://physionet.org/content/mimic-iv-demo/2.2/" target="_blank" rel="noopener">
         View Dataset on PhysioNet
@@ -371,7 +487,7 @@
         <h3>MIMIC Analytics Dashboard</h3>
         <p>Interactive Power BI report built on Gold-layer SQL views — admissions, diagnoses, prescriptions, transfers, and procedures.</p>
       </div>
-      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiOWFjMmJiNjktMDY1OC00OGFjLTg0ODgtNTkwYzBiYmEwYjc2IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
         Launch Dashboard &rarr;
       </a>
     </div>
@@ -623,6 +739,92 @@
   </div>
 </section>
 
+<!-- DAX Measures -->
+<section>
+  <div class="container">
+    <h2>DAX Measures</h2>
+    <p>
+      The Power BI dashboard defines <strong>18 DAX measures</strong> across four report pages,
+      querying the Gold-layer SQL views. Canonical definitions are in
+      <a href="../powerbi/mimic_powerbi_dax_measures.md">powerbi/mimic_powerbi_dax_measures.md</a>.
+    </p>
+
+    <h3>1. Hospital Overview</h3>
+    <pre><code>Total Patients =
+DISTINCTCOUNT(vw_admission_overview[patient_id])
+
+Total Admissions =
+DISTINCTCOUNT(vw_admission_overview[admission_id])
+
+Average LOS =
+AVERAGE(vw_admission_overview[length_of_stay_days])
+
+In-Hospital Deaths =
+CALCULATE(
+    DISTINCTCOUNT(vw_admission_overview[admission_id]),
+    vw_admission_overview[died_in_hospital] = TRUE()
+)
+
+30-Day Readmissions =
+CALCULATE(
+    DISTINCTCOUNT(vw_admission_overview[admission_id]),
+    vw_admission_overview[is_30_day_readmission] = TRUE()
+)
+
+Readmission Rate =
+DIVIDE(
+    [30-Day Readmissions],
+    [Total Admissions],
+    0
+)</code></pre>
+    <p><em>Format <code>Readmission Rate</code> as a percentage.</em></p>
+
+    <h3>2. Diagnosis Analysis</h3>
+    <pre><code>Diagnosis Records =
+COUNTROWS(vw_diagnosis_analysis)
+
+Diagnosed Patients =
+DISTINCTCOUNT(vw_diagnosis_analysis[patient_id])
+
+Primary Diagnoses =
+CALCULATE(
+    COUNTROWS(vw_diagnosis_analysis),
+    vw_diagnosis_analysis[is_primary_diagnosis] = TRUE()
+)</code></pre>
+
+    <h3>3. Medication Analysis</h3>
+    <pre><code>Total Prescriptions =
+COUNTROWS(vw_prescription_analysis)
+
+Patients Receiving Medication =
+DISTINCTCOUNT(vw_prescription_analysis[patient_id])
+
+Unique Drugs =
+DISTINCTCOUNT(vw_prescription_analysis[drug_name])
+
+Avg Prescription Duration =
+AVERAGE(
+    vw_prescription_analysis[prescription_duration_days]
+)</code></pre>
+
+    <h3>4. Hospital Operations</h3>
+    <pre><code>Total Transfers =
+COUNTROWS(vw_transfer_analysis)
+
+Transferred Patients =
+DISTINCTCOUNT(vw_transfer_analysis[patient_id])
+
+Avg Transfer Duration =
+AVERAGE(vw_transfer_analysis[transfer_duration_hours])
+
+Total Procedures =
+COUNTROWS(vw_procedure_analysis)
+
+Procedure Patients =
+DISTINCTCOUNT(vw_procedure_analysis[patient_id])</code></pre>
+  </div>
+</section>
+
 <!-- Dashboard CTA -->
 <section>
   <div class="container">
@@ -636,7 +838,7 @@
         <h3>MIMIC Analytics Dashboard</h3>
         <p>Published on Microsoft Power BI Service — no sign-in required for public view.</p>
       </div>
-      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiOWFjMmJiNjktMDY1OC00OGFjLTg0ODgtNTkwYzBiYmEwYjc2IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
+      <a class="btn btn-primary" href="https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">
         Open Dashboard &rarr;
       </a>
     </div>
@@ -650,6 +852,13 @@
       <a href="https://doi.org/10.13026/dp1f-ex47" target="_blank" rel="noopener">doi:10.13026/dp1f-ex47</a>
       &nbsp;·&nbsp;
       <a href="https://mimic.mit.edu/" target="_blank" rel="noopener">mimic.mit.edu</a>
+    </p>
+    <p style="margin-top:0.5rem">
+      <a href="index.html">Home</a> &nbsp;·&nbsp;
+      <a href="dashboard_01_hospital_overview.html">Dashboard 1 Report</a> &nbsp;·&nbsp;
+      <a href="https://app.powerbi.com/view?r=eyJrIjoiYWIwMDQ2MmItZTk2YS00NmRkLTlmNmUtMDljMjUwYTY1MWU0IiwidCI6ImJlOTdiY2NhLWEzZTItNDc4Yy1iMWM1LWQ5YTRkMWI2NTY3YyJ9" target="_blank" rel="noopener">Power BI</a>
+      &nbsp;·&nbsp;
+      <a href="../README.md">README</a>
     </p>
     <p style="margin-top:0.5rem">MIMIC Databricks Project &mdash; Medallion Lakehouse Pipeline</p>
   </div>

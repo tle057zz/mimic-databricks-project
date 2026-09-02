@@ -1,0 +1,156 @@
+{
+  "row_count": 18087,
+  "columns": [
+    "patient_id",
+    "admission_id",
+    "pharmacy_id",
+    "drug_name",
+    "drug_type",
+    "product_strength",
+    "dose_value",
+    "dose_unit",
+    "doses_per_24_hours",
+    "administration_route",
+    "prescription_start_date",
+    "prescription_duration_days",
+    "admission_type",
+    "length_of_stay_days",
+    "gender",
+    "anchor_age",
+    "age_group"
+  ],
+  "kpis": {
+    "total_prescriptions": 18087,
+    "patients_receiving_medication": 100,
+    "unique_drugs": 626,
+    "avg_prescription_duration": 2.71,
+    "distinct_admissions": 250
+  },
+  "top_10_medications": {
+    "Insulin": 915,
+    "0.9% Sodium Chloride": 810,
+    "Potassium Chloride": 610,
+    "Sodium Chloride 0.9%  Flush": 585,
+    "Furosemide": 510,
+    "5% Dextrose": 492,
+    "Bag": 454,
+    "Magnesium Sulfate": 402,
+    "Metoprolol Tartrate": 371,
+    "Acetaminophen": 344
+  },
+  "by_administration_route": {
+    "IV": 8219,
+    "PO/NG": 3841,
+    "PO": 2191,
+    "SC": 1249,
+    "IV DRIP": 1026,
+    "IM": 370,
+    "IH": 194,
+    "TP": 157,
+    "PR": 152,
+    "ORAL": 77,
+    "TD": 72,
+    "IVPCA": 69,
+    "IV BOLUS": 61,
+    "DWELL": 56,
+    "NU": 54,
+    "NG": 45,
+    "BOTH EYES": 39,
+    "DIALYS": 33,
+    "NEB": 33,
+    "REPLACE": 32,
+    "ED": 28,
+    "SL": 23,
+    "ID": 22,
+    "SUBCUT": 11,
+    "LEFT EYE": 11,
+    "PERIPHNERVE": 4,
+    "LEFT EAR": 2,
+    "VG": 2,
+    "RIGHT EAR": 2,
+    "RIGHT EYE": 2,
+    "OS": 1,
+    "NAS": 1,
+    "BOTH EARS": 1,
+    "IJ": 1
+  },
+  "by_administration_route_pct": {
+    "IV": 45.44,
+    "PO/NG": 21.24,
+    "PO": 12.11,
+    "SC": 6.91,
+    "IV DRIP": 5.67,
+    "IM": 2.05,
+    "IH": 1.07,
+    "TP": 0.87,
+    "PR": 0.84,
+    "ORAL": 0.43
+  },
+  "by_drug_type": {
+    "MAIN": 14391,
+    "BASE": 3677,
+    "ADDITIVE": 19
+  },
+  "top_15_avg_duration": {
+    "Clotrimazole": 23.29,
+    "Aluminum Hydroxide Suspension": 23.25,
+    "Sodium Fluoride 1.1% (Dental Gel)": 23.25,
+    "Clonidine Patch 0.3 mg/24 hr": 18.33,
+    "Psyllium Powder": 15.17,
+    "Esomeprazole sodium": 14.96,
+    "Caphosol": 14.17,
+    "ruxolitinib": 13.54,
+    "Collagenase Ointment": 12.17,
+    "Hydrocortisone": 12.08,
+    "Perphenazine": 12.0,
+    "Sodium CITRATE 4%": 11.94,
+    "Pyridoxine": 11.88,
+    "Tizanidine": 11.0,
+    "Metamucil Fiber Singles": 10.92
+  },
+  "avg_prescriptions_per_admission": 72.35,
+  "by_age_group": {
+    "18-34": 1038,
+    "35-49": 2568,
+    "50-64": 7440,
+    "65-79": 5265,
+    "80+": 1776
+  },
+  "by_gender": {
+    "F": 7594,
+    "M": 10493
+  },
+  "route_top_6": {
+    "IV": {
+      "count": 8219,
+      "pct": 45.44
+    },
+    "PO/NG": {
+      "count": 3841,
+      "pct": 21.24
+    },
+    "PO": {
+      "count": 2191,
+      "pct": 12.11
+    },
+    "SC": {
+      "count": 1249,
+      "pct": 6.91
+    },
+    "IV DRIP": {
+      "count": 1026,
+      "pct": 5.67
+    },
+    "IM": {
+      "count": 370,
+      "pct": 2.05
+    }
+  },
+  "top_admission_types": {
+    "EW EMER.": 7291,
+    "URGENT": 3679,
+    "OBSERVATION ADMIT": 3581,
+    "SURGICAL SAME DAY ADMISSION": 1239,
+    "DIRECT EMER.": 1011
+  }
+}

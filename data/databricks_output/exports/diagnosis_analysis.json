@@ -1,0 +1,94 @@
+{
+  "kpis": {
+    "diagnosed_patients": 100,
+    "diagnosis_records": 4506,
+    "primary_diagnoses": 275,
+    "distinct_admissions": 275,
+    "avg_diagnoses_per_admission": 16.39,
+    "primary_share_pct": 6.1
+  },
+  "top_10_primary": {
+    "Coronary atherosclerosis of native coronary artery": 7,
+    "Acute kidney failure, unspecified": 7,
+    "Cerebral aneurysm, nonruptured": 4,
+    "Non-ST elevation (NSTEMI) myocardial infarction": 4,
+    "Aortic valve disorders": 4,
+    "Other postoperative infection": 4,
+    "Abscess of liver": 3,
+    "Acute on chronic systolic heart failure": 3,
+    "Encounter for antineoplastic chemotherapy": 3,
+    "Acute respiratory failure with hypoxia": 3
+  },
+  "top_10_all": {
+    "Unspecified essential hypertension": 68,
+    "Hyperlipidemia, unspecified": 57,
+    "Acute kidney failure, unspecified": 56,
+    "Other and unspecified hyperlipidemia": 55,
+    "Hypothyroidism, unspecified": 47,
+    "Obesity, unspecified": 43,
+    "Anemia, unspecified": 41,
+    "Long term (current) use of insulin": 37,
+    "Urinary tract infection, site not specified": 36,
+    "Personal history of nicotine dependence": 35
+  },
+  "by_age_gender": {
+    "80+": {
+      "F": 357,
+      "M": 214
+    },
+    "65-79": {
+      "F": 658,
+      "M": 615
+    },
+    "50-64": {
+      "F": 627,
+      "M": 1286
+    },
+    "35-49": {
+      "F": 425,
+      "M": 185
+    },
+    "18-34": {
+      "F": 115,
+      "M": 24
+    }
+  },
+  "top_10_avg_los": {
+    "Inhalation and ingestion of other object causing obstruction of respiratory tract or suffocation": 44.93,
+    "Catatonic type schizophrenia, unspecified": 44.93,
+    "Foreign body in larynx": 44.93,
+    "Other alteration of consciousness": 44.93,
+    "Acute systolic (congestive) heart failure": 34.08,
+    "Diverticulosis of large intestine without perforation or abscess without bleeding": 34.08,
+    "Acute embolism and thrombosis of unspecified deep veins of right lower extremity": 34.08,
+    "Takotsubo syndrome": 34.08,
+    "Benign neoplasm of descending colon": 34.08,
+    "Hypothermia, not associated with low environmental temperature": 34.08
+  },
+  "icd_version_counts": {
+    "10": 2313,
+    "9": 2193
+  },
+  "admission_type_diagnosis_counts": {
+    "EW EMER.": 1853,
+    "OBSERVATION ADMIT": 926,
+    "URGENT": 708,
+    "EU OBSERVATION": 313,
+    "DIRECT EMER.": 227,
+    "SURGICAL SAME DAY ADMISSION": 189,
+    "ELECTIVE": 157,
+    "DIRECT OBSERVATION": 86,
+    "AMBULATORY OBSERVATION": 47
+  },
+  "by_age_group": {
+    "18-34": 139,
+    "35-49": 610,
+    "50-64": 1913,
+    "65-79": 1273,
+    "80+": 571
+  },
+  "by_gender": {
+    "F": 2182,
+    "M": 2324
+  }
+}

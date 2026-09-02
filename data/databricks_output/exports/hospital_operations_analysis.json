@@ -1,0 +1,91 @@
+{
+  "transfer_kpis": {
+    "total_transfers": 1190,
+    "transferred_patients": 100,
+    "avg_transfer_duration": 51.22,
+    "distinct_admissions": 275
+  },
+  "procedure_kpis": {
+    "total_procedures": 722,
+    "procedure_patients": 92,
+    "distinct_admissions": 187,
+    "primary_procedures": 187
+  },
+  "transfers_by_care_unit": {
+    "(Blank)": 275,
+    "EMERGENCY DEPARTMENT": 236,
+    "MEDICINE": 77,
+    "MED/SURG": 48,
+    "NEUROLOGY": 46,
+    "MEDICINE/CARDIOLOGY": 43,
+    "CARDIAC SURGERY": 39,
+    "TRANSPLANT": 39,
+    "MEDICAL INTENSIVE CARE UNIT (MICU)": 36,
+    "DISCHARGE LOUNGE": 36,
+    "SURGICAL INTENSIVE CARE UNIT (SICU)": 33,
+    "MEDICAL/SURGICAL INTENSIVE CARE UNIT (MICU/SICU)": 32,
+    "HEMATOLOGY/ONCOLOGY": 31,
+    "CARDIAC VASCULAR INTENSIVE CARE UNIT (CVICU)": 31,
+    "EMERGENCY DEPARTMENT OBSERVATION": 26
+  },
+  "avg_duration_by_care_unit": {
+    "MEDICINE/CARDIOLOGY INTERMEDIATE": 332.21,
+    "PSYCHIATRY": 195.85,
+    "HEMATOLOGY/ONCOLOGY": 126.45,
+    "VASCULAR": 105.09,
+    "CORONARY CARE UNIT (CCU)": 96.0,
+    "TRANSPLANT": 95.7,
+    "HEMATOLOGY/ONCOLOGY INTERMEDIATE": 89.03,
+    "MEDICAL/SURGICAL INTENSIVE CARE UNIT (MICU/SICU)": 84.69,
+    "MEDICAL INTENSIVE CARE UNIT (MICU)": 83.09,
+    "TRAUMA SICU (TSICU)": 80.1
+  },
+  "transfers_by_event_type": {
+    "TRANSFER": 404,
+    "DISCHARGE": 275,
+    "ADMIT": 275,
+    "ED": 236
+  },
+  "transfers_by_event_type_pct": {
+    "TRANSFER": 33.95,
+    "DISCHARGE": 23.11,
+    "ADMIT": 23.11,
+    "ED": 19.83
+  },
+  "procedures_by_age_group": {
+    "18-34": 36,
+    "35-49": 130,
+    "50-64": 286,
+    "65-79": 208,
+    "80+": 62
+  },
+  "top_10_procedure_codes": {
+    "02HV33Z": 23,
+    "3897": 22,
+    "966": 18,
+    "9671": 15,
+    "3893": 13,
+    "3961": 13,
+    "5491": 12,
+    "9604": 11,
+    "3891": 10,
+    "3E0G76Z": 10
+  },
+  "procedure_icd_version": {
+    "9": 401,
+    "10": 321
+  },
+  "procedures_by_gender": {
+    "F": 297,
+    "M": 425
+  },
+  "transfer_admission_types": {
+    "EW EMER.": 477,
+    "OBSERVATION ADMIT": 182,
+    "URGENT": 166,
+    "EU OBSERVATION": 97,
+    "SURGICAL SAME DAY ADMISSION": 80
+  },
+  "blank_care_unit_count": 275,
+  "ed_care_unit_count": 236
+}
